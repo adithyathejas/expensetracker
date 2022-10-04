@@ -5,7 +5,7 @@ form.addEventListener('submit',addItem)
 window.addEventListener('DOMContentLoaded',remember)
 
 function remember(){
-    axios.get("https://crudcrud.com/api/b362195124e24422a7e46da73ca95581/expense")
+    axios.get("https://crudcrud.com/api/36c99954a8224e8292f0aa529f23a2e5/expense")
     .then((response)=>{
         console.log(response)
         for(let i=0;i<response.data.length;i++){
@@ -41,13 +41,13 @@ async function addItem(e){
     }
     let flag=0
     //check if exist on crud crud
-    await axios.get("https://crudcrud.com/api/b362195124e24422a7e46da73ca95581/expense")
+    await axios.get("https://crudcrud.com/api/36c99954a8224e8292f0aa529f23a2e5/expense")
     .then((response)=>{
         console.log(response)
         
         for(let i=0;i<response.data.length;i++){
             if(response.data[i].desc==window.myObj.desc){
-                axios.put('https://crudcrud.com/api/b362195124e24422a7e46da73ca95581/expense/'+response.data[i]._id,window.myObj)
+                axios.put('https://crudcrud.com/api/36c99954a8224e8292f0aa529f23a2e5/expense/'+response.data[i]._id,window.myObj)
                 flag = 1
                 console.log("put")
             }
@@ -57,7 +57,7 @@ async function addItem(e){
     addElement(myObj)
    //add to crud crud 
    if(flag==0){
-    axios.post("https://crudcrud.com/api/b362195124e24422a7e46da73ca95581/expense",myObj).then((res)=>{console.log("post:", res)}).catch((err)=>{console.log("post error:", err)})
+    axios.post("https://crudcrud.com/api/36c99954a8224e8292f0aa529f23a2e5/expense",myObj).then((res)=>{console.log("post:", res)}).catch((err)=>{console.log("post error:", err)})
     console.log(flag)
 }
     
@@ -117,8 +117,9 @@ async function addItem(e){
         
        async  function removeItem(e){
             var li = e.target.parentElement.parentElement
+            
+            await axios.delete('https://crudcrud.com/api/36c99954a8224e8292f0aa529f23a2e5/expense/'+Obj._id)
             list.removeChild(li)
-            await axios.delete('https://crudcrud.com/api/b362195124e24422a7e46da73ca95581/expense/'+Obj._id)
 
         }
     
